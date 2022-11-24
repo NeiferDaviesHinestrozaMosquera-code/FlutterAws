@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutteraws/Screens/LoginPage.dart';
-import 'package:flutteraws/Screens/SignUpPage.dart';
-import 'package:flutteraws/Screens/VerificationPage.dart';
+import 'package:flutteraws/Screens/screens.dart';
 import 'package:flutteraws/Services/Auth_Services.dart';
+import 'package:flutteraws/Ui/Camera_Flow.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,7 +53,13 @@ void initState() {
             //5.5 Verificacion
             if (snapshot.data!.authFlowStatus == AuthFlowStatus.verification)
             MaterialPage(child: VerificationPage(
-            didProvideVerificationCode: _authService.verifyCode))
+            didProvideVerificationCode: _authService.verifyCode)),
+
+            //5.6 Caso de uso 
+            if (snapshot.data!.authFlowStatus == AuthFlowStatus.session)
+            MaterialPage(
+            child: CameraFlow(shouldLogOut: _authService.logOut))
+
           ],
           onPopPage: (route, result) => route.didPop(result),
         );

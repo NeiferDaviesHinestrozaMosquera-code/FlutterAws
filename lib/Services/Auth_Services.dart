@@ -47,5 +47,11 @@ class AuthService {  //ACA CONTROLAMOS LOS DOS PUNTOS ANTERIORES (ES UN ADMIN)
   void verifyCode(String verificationCode) {
   final state = AuthState(authFlowStatus: AuthFlowStatus.session);
   authStateController.add(state);
+  }
+
+  //ACA CERRAMOS SESION
+ void logOut() {
+ final state = AuthState(authFlowStatus: AuthFlowStatus.login);
+ authStateController.add(state);
 }
 }
